@@ -1,11 +1,7 @@
-ENV NODE_CRYPTO <%= branch %>
-ENV NODEVERSION <%= version %>
-ENV NODEURL <%= url %>
-ENV NODESHA256 <%= sha256 %>
-<% if asc_url -%>
-ENV NODEASC_URL <%= asc_url %>
-ENV NODEPGP_KEY <%= key %>
-<% end -%>
+ENV NODE_CRYPTO litecoin
+ENV NODEVERSION 0.16.0
+ENV NODEURL https://download.litecoin.org/litecoin-0.16.0/linux/litecoin-0.16.0-x86_64-linux-gnu.tar.gz
+ENV NODESHA256 5a1dfaea8d70f4d0d61190061631d6ad40cb3662e7718660000c43f564c348e6
 
 
 FROM debian:stretch-slim
@@ -22,11 +18,6 @@ RUN set -ex \
 	&& cd /tmp \
 	&& wget -qO NODE_CRYPTO.tar.gz "$NODEURL" \
 	&& echo "$NODESHA256 NODE_CRYPTO.tar.gz" | sha256sum -c - \
-<% if asc_url -%>
-	&& gpg --keyserver keyserver.ubuntu.com --recv-keys "$NODEPGP_KEY" \
-	&& wget -qO NODE_CRYPTO.asc "$NODEASC_URL" \
-	&& gpg --verify NODE_CRYPTO.asc \
-<% end -%>
 	&& tar -xzvf NODE_CRYPTO.tar.gz -C /usr/local --strip-components=1 --exclude=*-qt \
 	&& rm -rf /tmp/*
 

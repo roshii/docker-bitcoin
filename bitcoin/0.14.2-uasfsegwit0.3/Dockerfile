@@ -1,11 +1,9 @@
-ENV NODE_CRYPTO <%= branch %>
-ENV NODEVERSION <%= version %>
-ENV NODEURL <%= url %>
-ENV NODESHA256 <%= sha256 %>
-<% if asc_url -%>
-ENV NODEASC_URL <%= asc_url %>
-ENV NODEPGP_KEY <%= key %>
-<% end -%>
+ENV NODE_CRYPTO bitcoin
+ENV NODEVERSION 0.14.2-uasfsegwit0.3
+ENV NODEURL https://uasf.bitcoinreminder.com/core-0.14.2-uasfsegwit0.3/bitcoin-0.14.2-bip148_segwit0.3-x86_64-linux-gnu.tar.gz
+ENV NODESHA256 668ba1ae6d54307878e1e02d396b96e0bb3829b71735cb1992910cadf861db1f
+ENV NODEASC_URL https://uasf.bitcoinreminder.com/core-0.14.2-uasfsegwit0.3/SHA256SUMS.asc
+ENV NODEPGP_KEY E463A93F5F3117EEDE6C7316BD02942421F4889F
 
 
 FROM debian:stretch-slim
@@ -22,11 +20,9 @@ RUN set -ex \
 	&& cd /tmp \
 	&& wget -qO NODE_CRYPTO.tar.gz "$NODEURL" \
 	&& echo "$NODESHA256 NODE_CRYPTO.tar.gz" | sha256sum -c - \
-<% if asc_url -%>
 	&& gpg --keyserver keyserver.ubuntu.com --recv-keys "$NODEPGP_KEY" \
 	&& wget -qO NODE_CRYPTO.asc "$NODEASC_URL" \
 	&& gpg --verify NODE_CRYPTO.asc \
-<% end -%>
 	&& tar -xzvf NODE_CRYPTO.tar.gz -C /usr/local --strip-components=1 --exclude=*-qt \
 	&& rm -rf /tmp/*
 
