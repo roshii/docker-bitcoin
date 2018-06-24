@@ -1,12 +1,11 @@
+FROM debian:stretch-slim
+
 ENV NODE_CRYPTO bitcoin
 ENV NODEVERSION 0.12.1
 ENV NODEURL https://bitcoin.org/bin/bitcoin-core-0.12.1/bitcoin-0.12.1-linux64.tar.gz
 ENV NODESHA256 54aca14b7512801ab78cc93f8576e1b66364a890e8017e8a187e4bf0209fd28c
 ENV NODEASC_URL https://bitcoin.org/bin/bitcoin-core-0.12.1/SHA256SUMS.asc
 ENV NODEPGP_KEY 01EA5486DE18A882D4C2684590C8019E36C2E964
-
-
-FROM debian:stretch-slim
 
 RUN groupadd -r "$NODE_CRYPTO" && useradd -r -m -g "$NODE_CRYPTO $NODE_CRYPTO"
 

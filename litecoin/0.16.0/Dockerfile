@@ -1,10 +1,9 @@
+FROM debian:stretch-slim
+
 ENV NODE_CRYPTO litecoin
 ENV NODEVERSION 0.16.0
 ENV NODEURL https://download.litecoin.org/litecoin-0.16.0/linux/litecoin-0.16.0-x86_64-linux-gnu.tar.gz
 ENV NODESHA256 5a1dfaea8d70f4d0d61190061631d6ad40cb3662e7718660000c43f564c348e6
-
-
-FROM debian:stretch-slim
 
 RUN groupadd -r "$NODE_CRYPTO" && useradd -r -m -g "$NODE_CRYPTO $NODE_CRYPTO"
 

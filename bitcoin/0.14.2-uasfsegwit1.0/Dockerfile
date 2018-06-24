@@ -1,12 +1,11 @@
+FROM debian:stretch-slim
+
 ENV NODE_CRYPTO bitcoin
 ENV NODEVERSION 0.14.2-uasfsegwit1.0
 ENV NODEURL https://uasf.bitcoinreminder.com/core-0.14.2-uasfsegwit1.0/bitcoin-0.14.2-uasfsegwit1.0-x86_64-linux-gnu.tar.gz
 ENV NODESHA256 f07f6c29d63492120ff770ee50875d60354f420ee9272c419dd1321493a6d656
 ENV NODEASC_URL https://uasf.bitcoinreminder.com/core-0.14.2-uasfsegwit1.0/SHA256SUMS.asc
 ENV NODEPGP_KEY E463A93F5F3117EEDE6C7316BD02942421F4889F
-
-
-FROM debian:stretch-slim
 
 RUN groupadd -r "$NODE_CRYPTO" && useradd -r -m -g "$NODE_CRYPTO $NODE_CRYPTO"
 

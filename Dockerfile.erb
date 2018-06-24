@@ -1,3 +1,5 @@
+FROM debian:stretch-slim
+
 ENV NODE_CRYPTO <%= branch %>
 ENV NODEVERSION <%= version %>
 ENV NODEURL <%= url %>
@@ -6,9 +8,6 @@ ENV NODESHA256 <%= sha256 %>
 ENV NODEASC_URL <%= asc_url %>
 ENV NODEPGP_KEY <%= key %>
 <% end -%>
-
-
-FROM debian:stretch-slim
 
 RUN groupadd -r "$NODE_CRYPTO" && useradd -r -m -g "$NODE_CRYPTO $NODE_CRYPTO"
 
