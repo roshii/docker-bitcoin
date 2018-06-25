@@ -23,9 +23,9 @@ RUN set -ex \
 # create data directory
 ENV NODEDATA /data
 RUN mkdir "$NODEDATA" \
-	&& chown -R "$NODE_CRYPTO:$NODE_CRYPTO $NODEDATA" \
-	&& ln -sfn "$NODEDATA /home/$NODE_CRYPTO/.$NODE_CRYPTO" \
-	&& chown -h "$NODE_CRYPTO:$NODE_CRYPTO /home/$NODE_CRYPTO/.$NODE_CRYPTO"
+	&& chown -R "$NODE_CRYPTO:$NODE_CRYPTO" "$NODEDATA" \
+	&& ln -sfn "$NODEDATA" "/home/$NODE_CRYPTO/.$NODE_CRYPTO" \
+	&& chown -h "$NODE_CRYPTO:$NODE_CRYPTO" "/home/$NODE_CRYPTO/.$NODE_CRYPTO"
 VOLUME /data
 
 COPY docker-entrypoint.sh /entrypoint.sh
