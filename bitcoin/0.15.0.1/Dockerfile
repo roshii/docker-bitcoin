@@ -7,7 +7,7 @@ ENV NODESHA256 ae3efa47bf87a694a5368cd6fea96c9942fe9be7856720b5027c8902e46a88d1
 ENV NODEASC_URL https://bitcoin.org/bin/bitcoin-core-0.15.0.1/SHA256SUMS.asc
 ENV NODEPGP_KEY 01EA5486DE18A882D4C2684590C8019E36C2E964
 
-RUN groupadd -r "$NODE_CRYPTO" && useradd -r -m -g "$NODE_CRYPTO $NODE_CRYPTO"
+RUN groupadd -r "$NODE_CRYPTO" && useradd -r -m -g "$NODE_CRYPTO" "$NODE_CRYPTO"
 
 RUN set -ex \
 	&& apt-get update \
@@ -17,7 +17,7 @@ RUN set -ex \
 # install "$NODE_CRYPTO" binaries
 RUN set -ex \
 	&& cd /tmp \
-	&& wget -qO "$NODE_CRYPTO.tar.gz $NODEURL" \
+	&& wget -qO "$NODE_CRYPTO.tar.gz" "$NODEURL" \
 	&& echo "$NODESHA256 $NODE_CRYPTO.tar.gz" | sha256sum -c - \
 	&& gpg --keyserver keyserver.ubuntu.com --recv-keys "$NODEPGP_KEY" \
 	&& wget -qO "$NODE_CRYPTO.asc $NODEASC_URL" \
