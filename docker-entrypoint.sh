@@ -8,8 +8,8 @@ if [[ "$1" == ""$NODECHAIN"-cli" || "$1" == ""$NODECHAIN"-tx" || "$1" == ""$NODE
 		cat <<-EOF > "$NODEDATA/$NODECHAIN.conf"
 		printtoconsole=1
 		rpcallowip=::/0
-		rpcpassword=${$NODECHAIN_RPC_PASSWORD:-password}
-		rpcuser=${$NODECHAIN_RPC_USER:-"$NODECHAIN"}
+		rpcpassword=admin
+		rpcuser=admin
 		EOF
 		chown "$NODECHAIN:$NODECHAIN" "$NODEDATA/$NODECHAIN.conf"
 	fi
