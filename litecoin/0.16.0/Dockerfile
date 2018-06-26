@@ -6,6 +6,8 @@ ENV NODEURL https://download.litecoin.org/litecoin-0.16.0/linux/litecoin-0.16.0-
 ENV NODESHA256 5a1dfaea8d70f4d0d61190061631d6ad40cb3662e7718660000c43f564c348e6
 
 
+	ENV NODEPORTS 9332 9333 19332 19333
+
 
 RUN groupadd -r "$NODECHAIN" && useradd -r -m -g "$NODECHAIN" "$NODECHAIN"
 
