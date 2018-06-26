@@ -5,6 +5,8 @@ ENV NODEVERSION 0.16.0
 ENV NODEURL https://download.litecoin.org/litecoin-0.16.0/linux/litecoin-0.16.0-x86_64-linux-gnu.tar.gz
 ENV NODESHA256 5a1dfaea8d70f4d0d61190061631d6ad40cb3662e7718660000c43f564c348e6
 
+
+
 RUN groupadd -r "$NODECHAIN" && useradd -r -m -g "$NODECHAIN" "$NODECHAIN"
 
 RUN set -ex \
@@ -32,11 +34,6 @@ COPY docker-entrypoint.sh /entrypoint.sh
 
 ENTRYPOINT ["/entrypoint.sh"]
 
-case litecoin
-when "bitcoin"
-	EXPOSE 8332 8333 18332 18333
-When "litecoin"
-	EXPOSE 9332 9333 19332 19333
-end
+EXPOSE "$NODEPORTS"
 
 CMD [""$NODECHAINd""]

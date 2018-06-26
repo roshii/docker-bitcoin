@@ -7,6 +7,8 @@ ENV NODESHA256 ad97b28524d4f64f06549fb7d0ca45cfaa0f35090cf230cd80f3ad8cb8eaf9bd
 ENV NODEASC_URL https://bitcoin.org/bin/bitcoin-core-0.12.0/SHA256SUMS.asc
 ENV NODEPGP_KEY 01EA5486DE18A882D4C2684590C8019E36C2E964
 
+
+
 RUN groupadd -r "$NODECHAIN" && useradd -r -m -g "$NODECHAIN" "$NODECHAIN"
 
 RUN set -ex \
@@ -37,11 +39,6 @@ COPY docker-entrypoint.sh /entrypoint.sh
 
 ENTRYPOINT ["/entrypoint.sh"]
 
-case bitcoin
-when "bitcoin"
-	EXPOSE 8332 8333 18332 18333
-When "litecoin"
-	EXPOSE 9332 9333 19332 19333
-end
+EXPOSE "$NODEPORTS"
 
 CMD [""$NODECHAINd""]
