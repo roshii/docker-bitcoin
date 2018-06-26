@@ -9,7 +9,7 @@ ENV NODEASC_URL <%= asc_url %>
 ENV NODEPGP_KEY <%= key %>
 <% end -%>
 
-<% case "$NODECHAIN" when "bitcoin" %> 
+<% case branch when "bitcoin" %> 
 	ENV NODEPORTS 8332 8333 18332 18333
 <% when "litecoin" %>
 	ENV NODEPORTS 9332 9333 19332 19333
