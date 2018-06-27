@@ -19,13 +19,18 @@ ENV NODEPGP_KEY <%= key %>
 	ENV NODEPORT_RPC 9333
 	ENV NODEPORT_P2PTESTNET 19332
 	ENV NODEPORT_RPCTESTNET 19333
+<% when "dcr" %>
+	ENV NODEPORT_P2P 9108
+	ENV NODEPORT_RPC 9109
+	ENV NODEPORT_P2PTESTNET 19108
+	ENV NODEPORT_RPCTESTNET 19109
 <% end %>
 
 RUN groupadd -r "$NODECHAIN" && useradd -r -m -g "$NODECHAIN" "$NODECHAIN"
 
 RUN set -ex \
 	&& apt-get update \
-	&& apt-get install -qq --no-install-recommends ca-certificates dirmngr gosu gpg wget \
+	&& apt-get install -qq --no-install-recommends dialog ca-certificates dirmngr gosu gpg wget \
 	&& rm -rf /var/lib/apt/lists/*
 
 # install "$NODECHAIN" binaries
@@ -55,4 +60,4 @@ ENTRYPOINT ["/entrypoint.sh"]
 
 EXPOSE "$NODEPORT_P2P" "$NODEPORT_RPC" "$NODEPORT_P2PTESTNET" "$NODEPORT_RPCTESTNET"
 
-CMD [""$NODECHAINd""]
+CMD ${NODECHAIN}d

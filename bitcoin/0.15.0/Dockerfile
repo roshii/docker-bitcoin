@@ -18,7 +18,7 @@ RUN groupadd -r "$NODECHAIN" && useradd -r -m -g "$NODECHAIN" "$NODECHAIN"
 
 RUN set -ex \
 	&& apt-get update \
-	&& apt-get install -qq --no-install-recommends ca-certificates dirmngr gosu gpg wget \
+	&& apt-get install -qq --no-install-recommends dialog ca-certificates dirmngr gosu gpg wget \
 	&& rm -rf /var/lib/apt/lists/*
 
 # install "$NODECHAIN" binaries
@@ -46,4 +46,4 @@ ENTRYPOINT ["/entrypoint.sh"]
 
 EXPOSE "$NODEPORT_P2P" "$NODEPORT_RPC" "$NODEPORT_P2PTESTNET" "$NODEPORT_RPCTESTNET"
 
-CMD [""$NODECHAINd""]
+CMD ${NODECHAIN}d
