@@ -95,3 +95,8 @@ litecoin:
   0.16.0:
     url: https://download.litecoin.org/litecoin-0.16.0/linux/litecoin-0.16.0-x86_64-linux-gnu.tar.gz
     sha256: 5a1dfaea8d70f4d0d61190061631d6ad40cb3662e7718660000c43f564c348e6
+
+dcr:
+  1.2.1:
+    url: https://github.com/decred/decred-binaries/releases/download/v1.2.1/decrediton-v1.2.1.tar.gz
+    sha256: a2535fc4d789486850ac66b1de3b45a013c937bfd8509e0396f1863fe41ed535
