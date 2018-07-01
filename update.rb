@@ -16,8 +16,8 @@ def status(msg)
 end
 
 # update docker files for version
-def update_version(branch, version, opts={})
-  dir = File.join(branch, version)
+def update_version(chain, version, opts={})
+  dir = File.join(chain, version)
   status "Update version #{dir}"
 
   # initialize directory
@@ -35,14 +35,14 @@ end
 
 def load_versions
   versions = YAML.load_file('versions.yml')
-  versions.select! { |k, v| k === ENV['BRANCH'] } if ENV['BRANCH']
+  versions.select! { |k, v| k === ENV['chain'] } if ENV['chain']
   versions
 end
 
 if __FILE__ == $0
-  load_versions.each do |branch, versions|
+  load_versions.each do |chain, versions|
     versions.each do |version, opts|
-      update_version(branch, version, opts)
+      update_version(chain, version, opts)
     end
   end
 end

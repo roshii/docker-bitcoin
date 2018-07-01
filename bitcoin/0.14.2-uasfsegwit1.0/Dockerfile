@@ -14,6 +14,10 @@ ENV NODEPGP_KEY E463A93F5F3117EEDE6C7316BD02942421F4889F
 	ENV NODEPORT_RPCTESTNET 18333
 
 
+ 
+	ENV NODEDATA /data
+
+
 RUN groupadd -r "$NODECHAIN" && useradd -r -m -g "$NODECHAIN" "$NODECHAIN"
 
 RUN set -ex \
@@ -33,16 +37,16 @@ RUN set -ex \
 	&& rm -rf /tmp/*
 
 # create data directory
-ENV NODEDATA /data
 RUN mkdir "$NODEDATA" \
 	&& chown -R "$NODECHAIN:$NODECHAIN" "$NODEDATA" \
 	&& ln -sfn "$NODEDATA" "/home/$NODECHAIN/.$NODECHAIN" \
 	&& chown -h "$NODECHAIN:$NODECHAIN" "/home/$NODECHAIN/.$NODECHAIN"
-VOLUME /data
+VOLUME "$NODEDATA"
 
-COPY docker-entrypoint.sh /entrypoint.sh
 
-ENTRYPOINT ["/entrypoint.sh"]
+	COPY docker-entrypoint.sh /entrypoint.sh
+	ENTRYPOINT ["/entrypoint.sh"]
+
 
 EXPOSE "$NODEPORT_P2P" "$NODEPORT_RPC" "$NODEPORT_P2PTESTNET" "$NODEPORT_RPCTESTNET"
 

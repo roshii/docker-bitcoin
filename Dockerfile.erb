@@ -1,63 +1,63 @@
 FROM debian:stretch-slim
 
-ENV NODECHAIN <%= branch %>
-ENV NODEVERSION <%= version %>
-ENV NODEURL <%= url %>
-ENV NODESHA256 <%= sha256 %>
+ENV CHAIN <%= chain %>
+ENV VERSION <%= version %>
+ENV URL <%= url %>
+ENV SHA256 <%= sha256 %>
+ENV PORT_P2P <%= p2p_port %>
+ENV PORT_RPC <%= rpc_port %>
+ENV PORT_P2PTESTNET <%= testnet_p2p_port %>
+ENV PORT_RPCTESTNET <%= testnet_rpc_port %>
+ENV DATA_FOLDER /data
+
 <% if asc_url -%>
-ENV NODEASC_URL <%= asc_url %>
-ENV NODEPGP_KEY <%= key %>
+ENV ASC_URL <%= asc_url %>
+ENV PGP_KEY <%= key %>
 <% end -%>
 
-<% case branch when "bitcoin" %> 
-	ENV NODEPORT_P2P 8332
-	ENV NODEPORT_RPC 8333
-	ENV NODEPORT_P2PTESTNET 18332
-	ENV NODEPORT_RPCTESTNET 18333
-<% when "litecoin" %>
-	ENV NODEPORT_P2P 9332
-	ENV NODEPORT_RPC 9333
-	ENV NODEPORT_P2PTESTNET 19332
-	ENV NODEPORT_RPCTESTNET 19333
-<% when "dcr" %>
-	ENV NODEPORT_P2P 9108
-	ENV NODEPORT_RPC 9109
-	ENV NODEPORT_P2PTESTNET 19108
-	ENV NODEPORT_RPCTESTNET 19109
-<% end %>
+<% case chain when "bitcoin" -%>
+	ENV DEFAULT_FOLDER /home/bitcoin/.bitcoin
+<% when "litecoin" -%>
+	ENV DEFAULT_FOLDER /home/litecoin/.litecoin
+<% when "dcr" -%>
+	ENV DEFAULT_FOLDER /home/.dcrd/data
+<% end -%>
 
-RUN groupadd -r "$NODECHAIN" && useradd -r -m -g "$NODECHAIN" "$NODECHAIN"
+RUN groupadd -r "$CHAIN" && useradd -r -m -g "$CHAIN" "$CHAIN"
 
 RUN set -ex \
 	&& apt-get update \
-	&& apt-get install -qq --no-install-recommends dialog ca-certificates dirmngr gosu gpg wget \
+	&& DEBIAN_FRONTEND=noninteractive apt-get install -qq --no-install-recommends ca-certificates dirmngr gosu gpg wget \
 	&& rm -rf /var/lib/apt/lists/*
 
-# install "$NODECHAIN" binaries
+# install node binaries
 RUN set -ex \
 	&& cd /tmp \
-	&& wget -qO "$NODECHAIN.tar.gz" "$NODEURL" \
-	&& echo "$NODESHA256 $NODECHAIN.tar.gz" | sha256sum -c - \
+	&& wget -qO "$CHAIN.tar.gz" "$URL" \
+	&& echo "$SHA256 $CHAIN.tar.gz" | sha256sum -c - \
 <% if asc_url -%>
-	&& gpg --keyserver keyserver.ubuntu.com --recv-keys "$NODEPGP_KEY" \
-	&& wget -qO "$NODECHAIN.asc $NODEASC_URL" \
-	&& gpg --verify "$NODECHAIN.asc" \
+	&& gpg --keyserver keyserver.ubuntu.com --recv-keys "$PGP_KEY" \
+	&& wget -qO "$CHAIN.asc" "$ASC_URL" \
+	&& gpg --verify "$CHAIN.asc" \
 <% end -%>
-	&& tar -xzvf "$NODECHAIN.tar.gz" -C /usr/local --strip-components=1 --exclude=*-qt \
+	&& tar -xzvf "$CHAIN.tar.gz" -C /usr/local --strip-components=1 --exclude=*-qt \
 	&& rm -rf /tmp/*
 
 # create data directory
-ENV NODEDATA /data
-RUN mkdir "$NODEDATA" \
-	&& chown -R "$NODECHAIN:$NODECHAIN" "$NODEDATA" \
-	&& ln -sfn "$NODEDATA" "/home/$NODECHAIN/.$NODECHAIN" \
-	&& chown -h "$NODECHAIN:$NODECHAIN" "/home/$NODECHAIN/.$NODECHAIN"
-VOLUME /data
+RUN mkdir -p "$DATA_FOLDER" \
+	&& mkdir -p "$DEFAULT_FOLDER" \
+	&& chown -R "$CHAIN:$CHAIN" "$DATA_FOLDER" \
+	&& ln -sfn "$DATA_FOLDER" "$DEFAULT_FOLDER" \
+	&& chown -h "$CHAIN:$CHAIN" "$DEFAULT_FOLDER"
+VOLUME "$DATA_FOLDER"
 
-COPY docker-entrypoint.sh /entrypoint.sh
 
-ENTRYPOINT ["/entrypoint.sh"]
+EXPOSE "$PORT_P2P" "$PORT_RPC" "$PORT_P2PTESTNET" "$PORT_RPCTESTNET"
 
-EXPOSE "$NODEPORT_P2P" "$NODEPORT_RPC" "$NODEPORT_P2PTESTNET" "$NODEPORT_RPCTESTNET"
-
-CMD ${NODECHAIN}d
+<% case chain when "bitcoin", "litecoin" -%>
+	COPY docker-entrypoint.sh /entrypoint.sh
+	ENTRYPOINT ["/entrypoint.sh"]
+	CMD "$CHAIN"d
+<% when "dcr" -%>
+	CMD usr/local/resources/bin/dcrd
+<% end -%>

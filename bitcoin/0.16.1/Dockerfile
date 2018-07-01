@@ -1,49 +1,49 @@
 FROM debian:stretch-slim
 
-ENV NODECHAIN bitcoin
-ENV NODEVERSION 0.16.1
-ENV NODEURL https://bitcoin.org/bin/bitcoin-core-0.16.1/bitcoin-0.16.1-x86_64-linux-gnu.tar.gz
-ENV NODESHA256 10b31d17351ff4c7929cf955e4d24a2398b0ce91509f707faf8596940c12432a
-ENV NODEASC_URL https://bitcoin.org/bin/bitcoin-core-0.16.1/SHA256SUMS.asc
-ENV NODEPGP_KEY 01EA5486DE18A882D4C2684590C8019E36C2E964
+ENV CHAIN bitcoin
+ENV VERSION 0.16.1
+ENV URL https://bitcoin.org/bin/bitcoin-core-0.16.1/bitcoin-0.16.1-x86_64-linux-gnu.tar.gz
+ENV SHA256 10b31d17351ff4c7929cf955e4d24a2398b0ce91509f707faf8596940c12432a
+ENV PORT_P2P 8332
+ENV PORT_RPC 8333
+ENV PORT_P2PTESTNET 18332
+ENV PORT_RPCTESTNET 18333
+ENV DATA_FOLDER /data
 
- 
-	ENV NODEPORT_P2P 8332
-	ENV NODEPORT_RPC 8333
-	ENV NODEPORT_P2PTESTNET 18332
-	ENV NODEPORT_RPCTESTNET 18333
+ENV ASC_URL https://bitcoin.org/bin/bitcoin-core-0.16.1/SHA256SUMS.asc
+ENV PGP_KEY 01EA5486DE18A882D4C2684590C8019E36C2E964
 
+	ENV DEFAULT_FOLDER /home/bitcoin/.bitcoin
 
-RUN groupadd -r "$NODECHAIN" && useradd -r -m -g "$NODECHAIN" "$NODECHAIN"
+RUN groupadd -r "$CHAIN" && useradd -r -m -g "$CHAIN" "$CHAIN"
 
 RUN set -ex \
 	&& apt-get update \
-	&& apt-get install -qq --no-install-recommends dialog ca-certificates dirmngr gosu gpg wget \
+	&& DEBIAN_FRONTEND=noninteractive apt-get install -qq --no-install-recommends ca-certificates dirmngr gosu gpg wget \
 	&& rm -rf /var/lib/apt/lists/*
 
-# install "$NODECHAIN" binaries
+# install node binaries
 RUN set -ex \
 	&& cd /tmp \
-	&& wget -qO "$NODECHAIN.tar.gz" "$NODEURL" \
-	&& echo "$NODESHA256 $NODECHAIN.tar.gz" | sha256sum -c - \
-	&& gpg --keyserver keyserver.ubuntu.com --recv-keys "$NODEPGP_KEY" \
-	&& wget -qO "$NODECHAIN.asc $NODEASC_URL" \
-	&& gpg --verify "$NODECHAIN.asc" \
-	&& tar -xzvf "$NODECHAIN.tar.gz" -C /usr/local --strip-components=1 --exclude=*-qt \
+	&& wget -qO "$CHAIN.tar.gz" "$URL" \
+	&& echo "$SHA256 $CHAIN.tar.gz" | sha256sum -c - \
+	&& gpg --keyserver keyserver.ubuntu.com --recv-keys "$PGP_KEY" \
+	&& wget -qO "$CHAIN.asc" "$ASC_URL" \
+	&& gpg --verify "$CHAIN.asc" \
+	&& tar -xzvf "$CHAIN.tar.gz" -C /usr/local --strip-components=1 --exclude=*-qt \
 	&& rm -rf /tmp/*
 
 # create data directory
-ENV NODEDATA /data
-RUN mkdir "$NODEDATA" \
-	&& chown -R "$NODECHAIN:$NODECHAIN" "$NODEDATA" \
-	&& ln -sfn "$NODEDATA" "/home/$NODECHAIN/.$NODECHAIN" \
-	&& chown -h "$NODECHAIN:$NODECHAIN" "/home/$NODECHAIN/.$NODECHAIN"
-VOLUME /data
+RUN mkdir -p "$DATA_FOLDER" \
+	&& mkdir -p "$DEFAULT_FOLDER" \
+	&& chown -R "$CHAIN:$CHAIN" "$DATA_FOLDER" \
+	&& ln -sfn "$DATA_FOLDER" "$DEFAULT_FOLDER" \
+	&& chown -h "$CHAIN:$CHAIN" "$DEFAULT_FOLDER"
+VOLUME "$DATA_FOLDER"
 
-COPY docker-entrypoint.sh /entrypoint.sh
 
-ENTRYPOINT ["/entrypoint.sh"]
+EXPOSE "$PORT_P2P" "$PORT_RPC" "$PORT_P2PTESTNET" "$PORT_RPCTESTNET"
 
-EXPOSE "$NODEPORT_P2P" "$NODEPORT_RPC" "$NODEPORT_P2PTESTNET" "$NODEPORT_RPCTESTNET"
-
-CMD ${NODECHAIN}d
+	COPY docker-entrypoint.sh /entrypoint.sh
+	ENTRYPOINT ["/entrypoint.sh"]
+	CMD "$CHAIN"d
