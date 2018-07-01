@@ -11,7 +11,7 @@ ENV PORT_RPCTESTNET 19109
 ENV DATA_FOLDER /data
 
 
-	ENV DEFAULT_FOLDER /home/.dcrd/data
+	ENV DEFAULT_FOLDER /root/.dcrd
 
 RUN groupadd -r "$CHAIN" && useradd -r -m -g "$CHAIN" "$CHAIN"
 
