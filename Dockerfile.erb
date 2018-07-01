@@ -20,7 +20,7 @@ ENV PGP_KEY <%= key %>
 <% when "litecoin" -%>
 	ENV DEFAULT_FOLDER /home/litecoin/.litecoin
 <% when "dcr" -%>
-	ENV DEFAULT_FOLDER /home/.dcrd/data
+	ENV DEFAULT_FOLDER /root/.dcrd
 <% end -%>
 
 RUN groupadd -r "$CHAIN" && useradd -r -m -g "$CHAIN" "$CHAIN"
