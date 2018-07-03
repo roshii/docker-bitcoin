@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-if [[ "$1" == "bitcoind" || "$1" == "litecoind" ]]; then
+if [[ "$1" == "bitcoind" || "$1" == "litecoind" || "$1" == "dcrd" ]]; then
 
 	mkdir -p "$DATA_FOLDER"
 	

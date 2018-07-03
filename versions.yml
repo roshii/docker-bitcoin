@@ -1,5 +1,4 @@
 bitcoin:
-<<<<<<< HEAD
 #  0.15.1:
 #    url: https://bitcoin.org/bin/bitcoin-core-0.15.1/bitcoin-0.15.1-x86_64-linux-gnu.tar.gz
 #    asc_url: https://bitcoin.org/bin/bitcoin-core-0.15.1/SHA256SUMS.asc
@@ -10,94 +9,6 @@ bitcoin:
 #    asc_url: https://bitcoin.org/bin/bitcoin-core-0.16.0/SHA256SUMS.asc
 #    key: 01EA5486DE18A882D4C2684590C8019E36C2E964
 #    sha256: e6322c69bcc974a29e6a715e0ecb8799d2d21691d683eeb8fef65fc5f6a66477
-=======
-  0.10.3:
-    url: https://bitcoin.org/bin/bitcoin-core-0.10.3/bitcoin-0.10.3-linux64.tar.gz
-    asc_url: https://bitcoin.org/bin/bitcoin-core-0.10.3/SHA256SUMS.asc
-    key: 01EA5486DE18A882D4C2684590C8019E36C2E964
-    sha256: 586eb5576f71cd1ad2a42a26f67afc87deffc51d9f75348e2c7e96b1a401e23d
-  0.11.1:
-    url: https://bitcoin.org/bin/bitcoin-core-0.11.1/bitcoin-0.11.1-linux64.tar.gz
-    asc_url: https://bitcoin.org/bin/bitcoin-core-0.11.1/SHA256SUMS.asc
-    key: 01EA5486DE18A882D4C2684590C8019E36C2E964
-    sha256: 1e2c16e1dca75112e20f2cfb1acbdc45eb6fd4c6b49919fd64b45d960531abe2
-  0.11.2:
-    url: https://bitcoin.org/bin/bitcoin-core-0.11.2/bitcoin-0.11.2-linux64.tar.gz
-    asc_url: https://bitcoin.org/bin/bitcoin-core-0.11.2/SHA256SUMS.asc
-    key: 01EA5486DE18A882D4C2684590C8019E36C2E964
-    sha256: 2fc13c64fd10b7f75aa93d1f1df78f353a02cca62e17f9ffd106527da2e8b908
-  0.12.0:
-    url: https://bitcoin.org/bin/bitcoin-core-0.12.0/bitcoin-0.12.0-linux64.tar.gz
-    asc_url: https://bitcoin.org/bin/bitcoin-core-0.12.0/SHA256SUMS.asc
-    key: 01EA5486DE18A882D4C2684590C8019E36C2E964
-    sha256: ad97b28524d4f64f06549fb7d0ca45cfaa0f35090cf230cd80f3ad8cb8eaf9bd
-  0.12.1:
-    url: https://bitcoin.org/bin/bitcoin-core-0.12.1/bitcoin-0.12.1-linux64.tar.gz
-    asc_url: https://bitcoin.org/bin/bitcoin-core-0.12.1/SHA256SUMS.asc
-    key: 01EA5486DE18A882D4C2684590C8019E36C2E964
-    sha256: 54aca14b7512801ab78cc93f8576e1b66364a890e8017e8a187e4bf0209fd28c
-  0.13.0:
-    url: https://bitcoin.org/bin/bitcoin-core-0.13.0/bitcoin-0.13.0-x86_64-linux-gnu.tar.gz
-    asc_url: https://bitcoin.org/bin/bitcoin-core-0.13.0/SHA256SUMS.asc
-    key: 01EA5486DE18A882D4C2684590C8019E36C2E964
-    sha256: bcc1e42d61f88621301bbb00512376287f9df4568255f8b98bc10547dced96c8
-  0.13.1:
-    url: https://bitcoin.org/bin/bitcoin-core-0.13.1/bitcoin-0.13.1-x86_64-linux-gnu.tar.gz
-    asc_url: https://bitcoin.org/bin/bitcoin-core-0.13.1/SHA256SUMS.asc
-    key: 01EA5486DE18A882D4C2684590C8019E36C2E964
-    sha256: 2293de5682375b8edfde612d9e152b42344d25d3852663ba36f7f472b27954a4
-  0.13.2:
-    url: https://bitcoin.org/bin/bitcoin-core-0.13.2/bitcoin-0.13.2-x86_64-linux-gnu.tar.gz
-    asc_url: https://bitcoin.org/bin/bitcoin-core-0.13.2/SHA256SUMS.asc
-    key: 01EA5486DE18A882D4C2684590C8019E36C2E964
-    sha256: 29215a7fe7430224da52fc257686d2d387546eb8acd573a949128696e8761149
-  0.14.0:
-    url: https://bitcoin.org/bin/bitcoin-core-0.14.0/bitcoin-0.14.0-x86_64-linux-gnu.tar.gz
-    asc_url: https://bitcoin.org/bin/bitcoin-core-0.14.0/SHA256SUMS.asc
-    key: 01EA5486DE18A882D4C2684590C8019E36C2E964
-    sha256: 06e6ceeb687e784e9aaad45e9407c7eed5f7e9c9bbe44083179287f54f0f9f2b
-  0.14.1:
-    url: https://bitcoin.org/bin/bitcoin-core-0.14.1/bitcoin-0.14.1-x86_64-linux-gnu.tar.gz
-    asc_url: https://bitcoin.org/bin/bitcoin-core-0.14.1/SHA256SUMS.asc
-    key: 01EA5486DE18A882D4C2684590C8019E36C2E964
-    sha256: 0c6920a9f3181a95ca029fdac5342b5702569ee441ec2128d19051f281683058
-  0.14.2:
-    url: https://bitcoin.org/bin/bitcoin-core-0.14.2/bitcoin-0.14.2-x86_64-linux-gnu.tar.gz
-    asc_url: https://bitcoin.org/bin/bitcoin-core-0.14.2/SHA256SUMS.asc
-    key: 01EA5486DE18A882D4C2684590C8019E36C2E964
-    sha256: 20acc6d5d5e0c4140387bc3445b8b3244d74c1c509bd98f62b4ee63bec31a92b
-  0.14.2-uasfsegwit0.3:
-    url: https://uasf.bitcoinreminder.com/core-0.14.2-uasfsegwit0.3/bitcoin-0.14.2-bip148_segwit0.3-x86_64-linux-gnu.tar.gz
-    asc_url: https://uasf.bitcoinreminder.com/core-0.14.2-uasfsegwit0.3/SHA256SUMS.asc
-    key: E463A93F5F3117EEDE6C7316BD02942421F4889F
-    sha256: 668ba1ae6d54307878e1e02d396b96e0bb3829b71735cb1992910cadf861db1f
-    client_version: v0.14.2.0-3a051b8
-  0.14.2-uasfsegwit1.0:
-    url: https://uasf.bitcoinreminder.com/core-0.14.2-uasfsegwit1.0/bitcoin-0.14.2-uasfsegwit1.0-x86_64-linux-gnu.tar.gz
-    asc_url: https://uasf.bitcoinreminder.com/core-0.14.2-uasfsegwit1.0/SHA256SUMS.asc
-    key: E463A93F5F3117EEDE6C7316BD02942421F4889F
-    sha256: f07f6c29d63492120ff770ee50875d60354f420ee9272c419dd1321493a6d656
-  0.15.0:
-    url: https://bitcoin.org/bin/bitcoin-core-0.15.0/bitcoin-0.15.0-x86_64-linux-gnu.tar.gz
-    asc_url: https://bitcoin.org/bin/bitcoin-core-0.15.0/SHA256SUMS.asc
-    key: 01EA5486DE18A882D4C2684590C8019E36C2E964
-    sha256: ed57f268d8b5ea5acfcb0666e801cf557a444720d8aed5e812071ab2e2913342
-  0.15.0.1:
-    url: https://bitcoin.org/bin/bitcoin-core-0.15.0.1/bitcoin-0.15.0.1-x86_64-linux-gnu.tar.gz
-    asc_url: https://bitcoin.org/bin/bitcoin-core-0.15.0.1/SHA256SUMS.asc
-    key: 01EA5486DE18A882D4C2684590C8019E36C2E964
-    sha256: ae3efa47bf87a694a5368cd6fea96c9942fe9be7856720b5027c8902e46a88d1
-  0.15.1:
-    url: https://bitcoin.org/bin/bitcoin-core-0.15.1/bitcoin-0.15.1-x86_64-linux-gnu.tar.gz
-    asc_url: https://bitcoin.org/bin/bitcoin-core-0.15.1/SHA256SUMS.asc
-    key: 01EA5486DE18A882D4C2684590C8019E36C2E964
-    sha256: 387c2e12c67250892b0814f26a5a38f837ca8ab68c86af517f975a2a2710225b
-  0.16.0:
-    url: https://bitcoin.org/bin/bitcoin-core-0.16.0/bitcoin-0.16.0-x86_64-linux-gnu.tar.gz
-    asc_url: https://bitcoin.org/bin/bitcoin-core-0.16.0/SHA256SUMS.asc
-    key: 01EA5486DE18A882D4C2684590C8019E36C2E964
-    sha256: e6322c69bcc974a29e6a715e0ecb8799d2d21691d683eeb8fef65fc5f6a66477
->>>>>>> master
   0.16.1:
     url: https://bitcoin.org/bin/bitcoin-core-0.16.1/bitcoin-0.16.1-x86_64-linux-gnu.tar.gz
     sha256: 10b31d17351ff4c7929cf955e4d24a2398b0ce91509f707faf8596940c12432a
@@ -113,7 +24,6 @@ litecoin:
   0.16.0:
     url: https://download.litecoin.org/litecoin-0.16.0/linux/litecoin-0.16.0-x86_64-linux-gnu.tar.gz
     sha256: 5a1dfaea8d70f4d0d61190061631d6ad40cb3662e7718660000c43f564c348e6
-<<<<<<< HEAD
 #    asc_url: https://download.litecoin.org/litecoin-0.16.0/linux/litecoin-0.16.0-linux-signatures.asc
 #    key: 0xfe3348877809386c
 #    key_server: pgp.mit.edu
@@ -130,10 +40,3 @@ dcr:
     rpc_port: 9109
     testnet_p2p_port: 19108
     testnet_rpc_port: 19109
-=======
-
-dcr:
-  1.2.1:
-    url: https://github.com/decred/decred-binaries/releases/download/v1.2.1/decrediton-v1.2.1.tar.gz
-    sha256: a2535fc4d789486850ac66b1de3b45a013c937bfd8509e0396f1863fe41ed535
->>>>>>> master
