@@ -5,7 +5,7 @@ These sources allows one to build Docker image which provides `bitcoin`, `bitcoi
 Images are provided for a range of current and past Bitcoin version.
 To see the available versions/tags, please visit the appropriate pages on Docker Hub:
 
-* [Bitcoin Core](https://hub.docker.com/r/r0shii/bitcoin/tags/)
+* [Bitcoin Core](https://hub.docker.com/r/r0shii/cryptonodes/tags/)
 
 ### Usage
 
@@ -112,10 +112,6 @@ $ docker network create bitcoin
 $ docker run -d --rm --name bitcoind -v bitcoin-data:/data --network bitcoin r0shii/bitcoin
 $ docker run --rm --network bitcoin r0shii/bitcoin bitcoin-cli -rpcconnect=bitcoind getinfo
 ```
-
-### Complete Example
-
-For a complete example of running a bitcoin node using Docker Compose, see the [Docker Compose example](/example#readme).
 
 ### License
 

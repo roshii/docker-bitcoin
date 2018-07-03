@@ -2,22 +2,22 @@
 
 require "./update"
 
-def build_image(branch, version, opts)
-  dir = File.join(branch, version)
-  tag = "bitcoin-#{branch}:#{version}"
+def build_image(chain, version, opts)
+  dir = File.join(chain, version)
+  tag = "#{chain}:#{version}"
 
   # some clients self-report a different formatted version
   # so we allow this to be overridden in versions.yml
-  client_version = opts["client_version"] || "v#{version}"
+  client_version = opts["client_version"] || "#{version}"
 
   run "docker build -t #{tag} #{dir}"
-  run "docker run --rm #{tag} sh -c 'test -n \"$(bitcoind -version | grep \"version #{client_version}\")\"'"
+  run "docker run --rm #{tag} sh -c 'test -n \"$(#{chain}d --version | grep \"#{client_version}\")\"'"
 end
 
 if __FILE__ == $0
-  load_versions.each do |branch, versions|
+  load_versions.each do |chain, versions|
     versions.each do |version, opts|
-      build_image(branch, version, opts)
+      build_image(chain, version, opts)
     end
   end
 end

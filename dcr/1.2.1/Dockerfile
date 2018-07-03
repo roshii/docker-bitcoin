@@ -11,7 +11,7 @@ ENV PORT_RPCTESTNET 19109
 ENV DATA_FOLDER /data
 
 
-	ENV DEFAULT_FOLDER /home/.dcrd/data
+ENV DEFAULT_FOLDER /home/.dcrd/data
 
 RUN groupadd -r "$CHAIN" && useradd -r -m -g "$CHAIN" "$CHAIN"
 
@@ -26,6 +26,7 @@ RUN set -ex \
 	&& wget -qO "$CHAIN.tar.gz" "$URL" \
 	&& echo "$SHA256 $CHAIN.tar.gz" | sha256sum -c - \
 	&& tar -xzvf "$CHAIN.tar.gz" -C /usr/local --strip-components=1 --exclude=*-qt \
+	&& cp /usr/local/resources/bin/* /usr/local/bin \
 	&& rm -rf /tmp/*
 
 # create data directory
@@ -36,7 +37,7 @@ RUN mkdir -p "$DATA_FOLDER" \
 	&& chown -h "$CHAIN:$CHAIN" "$DEFAULT_FOLDER"
 VOLUME "$DATA_FOLDER"
 
-
 EXPOSE "$PORT_P2P" "$PORT_RPC" "$PORT_P2PTESTNET" "$PORT_RPCTESTNET"
 
-	CMD usr/local/resources/bin/dcrd
+	CMD "$CHAIN"d
+

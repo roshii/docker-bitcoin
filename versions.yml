@@ -11,9 +11,10 @@ bitcoin:
 #    sha256: e6322c69bcc974a29e6a715e0ecb8799d2d21691d683eeb8fef65fc5f6a66477
   0.16.1:
     url: https://bitcoin.org/bin/bitcoin-core-0.16.1/bitcoin-0.16.1-x86_64-linux-gnu.tar.gz
+    sha256: 10b31d17351ff4c7929cf955e4d24a2398b0ce91509f707faf8596940c12432a
     asc_url: https://bitcoin.org/bin/bitcoin-core-0.16.1/SHA256SUMS.asc
     key: 01EA5486DE18A882D4C2684590C8019E36C2E964
-    sha256: 10b31d17351ff4c7929cf955e4d24a2398b0ce91509f707faf8596940c12432a
+    key_server: keyserver.ubuntu.com
     p2p_port: 8332
     rpc_port: 8333
     testnet_p2p_port: 18332
@@ -22,16 +23,17 @@ bitcoin:
 litecoin:
   0.16.0:
     url: https://download.litecoin.org/litecoin-0.16.0/linux/litecoin-0.16.0-x86_64-linux-gnu.tar.gz
-#   asc_url: https://download.litecoin.org/litecoin-0.16.0/linux/litecoin-0.16.0-linux-signatures.asc
-#   key: 0xfe3348877809386c
     sha256: 5a1dfaea8d70f4d0d61190061631d6ad40cb3662e7718660000c43f564c348e6
+#    asc_url: https://download.litecoin.org/litecoin-0.16.0/linux/litecoin-0.16.0-linux-signatures.asc
+#    key: 0xfe3348877809386c
+#    key_server: pgp.mit.edu
     p2p_port: 9332
     rpc_port: 9333
     testnet_p2p_port: 19332
     testnet_rpc_port: 19333
 
 dcr:
-  1.2.1:
+  1.2.0:
     url: https://github.com/decred/decred-binaries/releases/download/v1.2.1/decrediton-v1.2.1.tar.gz
     sha256: a2535fc4d789486850ac66b1de3b45a013c937bfd8509e0396f1863fe41ed535
     p2p_port: 9108
