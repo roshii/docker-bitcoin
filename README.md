@@ -1,11 +1,19 @@
+<<<<<<< HEAD
 # Docker-Cryptonode
+=======
+# Docker-Cryptonodes
+>>>>>>> master
 
 These sources allows one to build Docker image which provides `bitcoin`, `bitcoin-cli` and `bitcoin-tx` applications and which can be used to run and interact with a bitcoin server.
 
 Images are provided for a range of current and past Bitcoin version.
 To see the available versions/tags, please visit the appropriate pages on Docker Hub:
 
+<<<<<<< HEAD
 * [Bitcoin Core](https://hub.docker.com/r/r0shii/cryptonodes/tags/)
+=======
+* [Bitcoin Core](https://hub.docker.com/r/r0shii/bitcoin/tags/)
+>>>>>>> master
 
 ### Usage
 
