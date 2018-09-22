@@ -1,24 +1,5 @@
 core:
   0.16.3:
-    url: https://bitcoincore.org/bin/bitcoin-core-0.16.3/bitcoin-0.16.3-x86_64-linux-gnu.tar.gz
-    asc_url: https://bitcoincore.org/bin/bitcoin-core-0.16.3/SHA256SUMS.asc
-    key: 01EA5486DE18A882D4C2684590C8019E36C2E964
-    sha256: 5d422a9d544742bc0df12427383f9c2517433ce7b58cf672b9a9b17c2ef51e4f
-
-abc:
-  0.16.2:
-    url: https://download.bitcoinabc.org/0.16.2/linux/bitcoin-abc-0.16.2-x86_64-linux-gnu.tar.gz
-    sha256: 5eeadea9c23069e08d18e0743f4a86a9774db7574197440c6d795fad5cad2084
-
-unlimited:
-  1.1.1.1:
-    url: https://github.com/BitcoinUnlimited/BitcoinUnlimitedWebDownloads/raw/master/BUcash-1.1.1.1-linux64.tar.gz
-    sha256: bdc3e07ce2cacc42295d7559fbaae5ae60fed82479c5644ab7293bbea6b79a62
-
-xt:
-  0.11.0G:
-    url: https://github.com/bitcoinxt/bitcoinxt/releases/download/v0.11G2/bitcoin-xt-0.11.0-G-linux64.tar.gz
-    asc_url: https://github.com/bitcoinxt/bitcoinxt/releases/download/v0.11G2/SHA256SUMS.asc
-    key: 8F6EDE3A88F86BC6F98255D7F5D993791A778012
-    sha256: f7db3f825d27b6d9aaad687338b082b29a4341443431afea57f46ba09c719fb7
-    client_version: v0.11G2
+    url: https://download.litecoin.org/litecoin-0.16.3/linux/litecoin-0.16.3-x86_64-linux-gnu.tar.gz
+    asc_url: https://download.litecoin.org/litecoin-0.16.3/linux/litecoin-0.16.3-linux-signatures.asc
+    sha256: 686d99d1746528648c2c54a1363d046436fd172beadaceea80bdc93043805994
